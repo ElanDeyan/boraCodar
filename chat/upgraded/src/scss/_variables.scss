@@ -1,0 +1,18 @@
+$clr-dark-purple: hsl(240, 16%, 12%);
+$clr-chat-background: hsl(0, 0%, 12%);
+$clr-neutral-white: hsl(240, 9%, 89%);
+$clr-primary-green: hsl(162, 100%, 35%);
+$clr-primary-contact-message: hsl(259, 52%, 48%);
+$clr-primary-me-message: hsl(177, 90%, 27%);
+$clr-send-message: hsl(240, 25%, 21%);
+
+$font-weights: (
+    "regular": 400,
+    "bold": 700,
+);
+
+$medias-breakpoints: (
+  "mobile": "(max-width: 425px)",
+  "tablet": "(min-width: 426px) and (max-width: 768px)",
+  "desktop": "(min-width: 769px)"
+);

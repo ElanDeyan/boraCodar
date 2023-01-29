@@ -1,0 +1,44 @@
+@use "variables" as var;
+
+:root {
+    --clr-backround-dark-blue: #{var.$clr-chat-background};
+    --clr-chat-background: #{var.$clr-dark-purple};
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Roboto", sans-serif;
+    color: var.$clr-neutral-white;
+    overflow: hidden;
+}
+
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    block-size: 100vh;
+
+    @supports (block-size: 100dvh) {
+        block-size: 100dvh;
+    }
+
+    background-color: var(--clr-chat-background);
+
+    padding: 2rem 1.5rem;
+
+    @media #{map-get(var.$medias-breakpoints, "desktop")} {
+      padding-inline: 4.5rem;
+    }
+}
+
+header,
+main,
+footer {
+    background-color: var(--clr-chat-background);
+}

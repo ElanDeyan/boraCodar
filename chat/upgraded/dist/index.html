@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <title>RocketChat</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="top-content">
+                <div class="contact">
+                    <img
+                        src="./assets/profile.png"
+                        alt="Contact's profile picture"
+                        class="profile"
+                    />
+                    <div class="contact-info">
+                        <span class="contact-name">Cecilia Sassaki</span>
+                        <div class="contact-status">
+                            <img
+                                src="./assets/online.svg"
+                                alt="Green icon for contact's status"
+                                class="icon"
+                            />
+                            <span class="status">Online</span>
+                        </div>
+                    </div>
+                    <a href="" class="close-link">
+                        <img
+                            src="./assets/close.svg"
+                            alt="Icon for close"
+                            class="icon close"
+                        />
+                    </a>
+                </div>
+            </div>
+            <div class="bottom-content">
+                <time datetime="2022-01-27T11:30">Hoje 11:30</time>
+            </div>
+        </header>
+        <main class="chat">
+            <div class="message-container" data-user="contact">
+                <div class="user-details">
+                    <span class="who">Cecilia</span>
+                    &hyphen;
+                    <time class="message-time" datetime="2022-01-27T11:30"
+                        >11:30</time
+                    >
+                </div>
+                <div class="message">
+                    Tive uma ideia incrível para um projeto! 😍
+                </div>
+            </div>
+            <div class="message-container" data-user="me">
+                <div class="user-details">
+                    <span class="who">Você</span>
+                    &hyphen;
+                    <time class="message-time" datetime="2022-01-27T11:32"
+                        >11:32</time
+                    >
+                </div>
+                <div class="message">Sério? Me conta mais.</div>
+            </div>
+            <div class="message-container" data-user="contact">
+                <div class="user-details">
+                    <span class="who">Cecilia</span>
+                    &hyphen;
+                    <time class="message-time" datetime="2022-01-27T11:34"
+                        >11:34</time
+                    >
+                </div>
+                <div class="message">
+                    E se a gente fizesse um chat moderno e responsivo em apenas
+                    uma semana?
+                </div>
+            </div>
+            <div class="message-container" data-user="me">
+                <div class="user-details">
+                    <span class="who">Você</span>
+                    &hyphen;
+                    <time class="message-time" datetime="2022-01-27T11:36"
+                        >11:36</time
+                    >
+                </div>
+                <div class="message">
+                    <strong class="bold">#boraCodar! 🚀</strong>
+                </div>
+            </div>
+        </main>
+        <footer class="textarea">
+            <form class="send-message-form" method="post">
+                <textarea
+                    name="message"
+                    rows="1"
+                    id="message"
+                    placeholder="Digite sua mensagem"
+                ></textarea>
+                <button class="send" type="submit" title="Enviar mensagem">
+                    <img
+                        src="./assets/send.svg"
+                        alt="Ícone de enviar mensagem"
+                        class="icon"
+                    />
+                </button>
+            </form>
+        </footer>
+    </body>
+</html>

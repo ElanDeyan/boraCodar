@@ -1,0 +1,168 @@
+@use "variables" as var;
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.625rem;
+
+    @media #{map-get(var.$medias-breakpoints, "desktop")} {
+      gap: .875rem;
+    }
+}
+
+.top-content {
+    inline-size: 100%;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .contact-info {
+        flex: 1;
+
+        .contact-name {
+            margin-block-end: 0.25rem;
+            font-weight: map-get($map: var.$font-weights, $key: "bold");
+            line-height: 1.17;
+        }
+    }
+
+    .contact-status {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.75rem;
+
+        .icon {
+            aspect-ratio: 1;
+            inline-size: 0.5rem;
+        }
+
+        .status {
+            font-weight: map-get($map: var.$font-weights, $key: "regular");
+            color: var.$clr-primary-green;
+            line-height: 0.875;
+        }
+    }
+
+    .close-link {
+        @supports (display: contents) {
+            display: contents;
+        }
+        .icon {
+            aspect-ratio: 1;
+            inline-size: 1.25rem;
+
+            @media #{map-get(var.$medias-breakpoints, "desktop")} {
+              inline-size: .73rem;
+            }
+        }
+    }
+}
+
+.bottom-content {
+    time {
+        font-size: 0.75rem;
+        font-weight: map-get($map: var.$font-weights, $key: "regular");
+        line-height: 0.87;
+    }
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    gap: 1.875rem;
+    overflow-y: scroll;
+
+    .message-container:first-of-type {
+        margin-block-start: 1.875rem;
+    }
+
+    .message-container:last-of-type {
+        margin-block-end: 1.875rem;
+    }
+
+    .message-container {
+        &[data-user="contact"] {
+            align-self: flex-start;
+
+            .user-details {
+                text-align: start;
+            }
+        }
+
+        &[data-user="me"] {
+            align-self: flex-end;
+
+            .user-details {
+                text-align: end;
+            }
+        }
+
+        .user-details {
+            font-size: 0.75rem;
+            font-weight: map-get($map: var.$font-weights, $key: "regular");
+            line-height: 0.87;
+            margin-block-end: 0.625rem;
+        }
+
+        &[data-user="contact"] .message {
+            background-color: var.$clr-primary-contact-message;
+            border-radius: 0 0.5rem 0.5rem 0.5rem;
+        }
+
+        &[data-user="me"] .message {
+            background-color: var.$clr-primary-me-message;
+            border-radius: 0.5rem 0.5rem 0 0.5rem;
+        }
+
+        .message {
+            padding: 0.875rem;
+            font-size: 0.75rem;
+            line-height: 0.87;
+            max-inline-size: 22ch;
+
+            @media #{map-get(var.$medias-breakpoints, "desktop")} {
+              max-inline-size: 66ch;
+            }
+        }
+    }
+}
+
+.textarea {
+    padding-block-start: 1.5rem;
+
+    .send-message-form {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.875rem 1.5rem;
+        border-radius: 999px;
+        background-color: var.$clr-send-message;
+
+        & > * {
+            all: unset;
+        }
+
+        textarea {
+            flex: 1;
+            font-size: .875rem;
+            line-height: .87;
+            font-weight: map-get($map: var.$font-weights, $key: "regular");
+
+            // https://stackoverflow.com/questions/36193459/how-do-i-vertically-align-placeholder-text-in-textarea
+            &::placeholder {
+              transform: translateY(3.5px);
+            }
+        }
+
+        .send {
+            display: grid;
+            place-items: center;
+            aspect-ratio: 1;
+        }
+    }
+}

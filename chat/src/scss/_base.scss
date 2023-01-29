@@ -31,6 +31,10 @@ body {
     background-color: var(--clr-chat-background);
 
     padding: 2rem 1.5rem;
+
+    @media #{map-get(var.$medias-breakpoints, "desktop")} {
+      padding-inline: 4.5rem;
+    }
 }
 
 header,

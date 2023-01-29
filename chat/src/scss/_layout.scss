@@ -5,6 +5,10 @@
     flex-direction: column;
     align-items: center;
     gap: 1.625rem;
+
+    @media #{map-get(var.$medias-breakpoints, "desktop")} {
+      gap: .875rem;
+    }
 }
 
 .top-content {
@@ -51,6 +55,10 @@
         .icon {
             aspect-ratio: 1;
             inline-size: 1.25rem;
+
+            @media #{map-get(var.$medias-breakpoints, "desktop")} {
+              inline-size: .73rem;
+            }
         }
     }
 }
@@ -116,6 +124,10 @@
             font-size: 0.75rem;
             line-height: 0.87;
             max-inline-size: 22ch;
+
+            @media #{map-get(var.$medias-breakpoints, "desktop")} {
+              max-inline-size: 66ch;
+            }
         }
     }
 }
@@ -137,16 +149,20 @@
 
         textarea {
             flex: 1;
+            font-size: .875rem;
+            line-height: .87;
+            font-weight: map-get($map: var.$font-weights, $key: "regular");
+
+            // https://stackoverflow.com/questions/36193459/how-do-i-vertically-align-placeholder-text-in-textarea
+            &::placeholder {
+              transform: translateY(3.5px);
+            }
         }
 
         .send {
-            @supports (display: contents) {
-                display: contents;
-            }
-
-            .icon {
-                margin: auto 0;
-            }
+            display: grid;
+            place-items: center;
+            aspect-ratio: 1;
         }
     }
 }

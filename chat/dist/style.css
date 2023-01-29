@@ -29,6 +29,11 @@ body {
     block-size: 100dvh;
   }
 }
+@media (min-width: 769px) {
+  body {
+    padding-inline: 4.5rem;
+  }
+}
 
 header,
 main,
@@ -41,6 +46,11 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 1.625rem;
+}
+@media (min-width: 769px) {
+  .header {
+    gap: 0.875rem;
+  }
 }
 
 .top-content {
@@ -83,6 +93,11 @@ footer {
 .contact .close-link .icon {
   aspect-ratio: 1;
   inline-size: 1.25rem;
+}
+@media (min-width: 769px) {
+  .contact .close-link .icon {
+    inline-size: 0.73rem;
+  }
 }
 
 .bottom-content time {
@@ -135,6 +150,11 @@ footer {
   line-height: 0.87;
   max-inline-size: 22ch;
 }
+@media (min-width: 769px) {
+  .chat .message-container .message {
+    max-inline-size: 66ch;
+  }
+}
 
 .textarea {
   padding-block-start: 1.5rem;
@@ -152,14 +172,17 @@ footer {
 }
 .textarea .send-message-form textarea {
   flex: 1;
+  font-size: 0.875rem;
+  line-height: 0.87;
+  font-weight: 400;
 }
-@supports (display: contents) {
-  .textarea .send-message-form .send {
-    display: contents;
-  }
+.textarea .send-message-form textarea::placeholder {
+  transform: translateY(3.5px);
 }
-.textarea .send-message-form .send .icon {
-  margin: auto 0;
+.textarea .send-message-form .send {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
 }
 
 /*# sourceMappingURL=style.css.map */

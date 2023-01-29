@@ -1,0 +1,71 @@
+@import url('./vendors.css');
+
+:root {
+    --bg-clr-page: hsl(260, 19%, 6%);
+    --bg-clr-player: hsl(257, 33%, 19%);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    background-color: var(--bg-clr-page);
+    min-block-size: 100vh;
+}
+
+#app {
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(auto-fit, fit-content);
+    grid-auto-rows: min-content;
+    grid-template-areas:
+        "layout-1 layout-2"
+        "layout-1 layout-3"
+    ;
+    gap: 2rem;
+    inline-size: 35vmax;
+    block-size: 50vmin;
+}
+
+.player {
+    background-color: var(--bg-clr-player);
+    border-radius: .6rem;
+}
+
+.player[data-layout="2"],
+.player[data-layout="3"] {
+    padding: 1.8rem;
+}
+
+.player[data-layout="1"] {
+    grid-area: layout-1;
+    padding: 2.4rem;
+    width: fit-content;
+}
+
+.player[data-layout="2"] {
+    grid-area: layout-2;
+}
+
+.player[data-layout="3"] {
+    grid-area: layout-3;
+}
+
+.song-image {
+    aspect-ratio: 1 / 1;
+    max-inline-size: 190px;
+    border-radius: .375rem;
+    object-fit: cover;
+    object-position: center;
+}
+
+.player[data-layout="1"] .wrapper {
+    width: 190px;
+}

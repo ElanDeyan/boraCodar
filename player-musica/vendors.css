@@ -1,0 +1,27 @@
+/* https://stackoverflow.com/questions/7638754/html-5-audio-tag-custom-controls */
+/* Removes the time stamp */
+audio::-webkit-media-controls-current-time-display {
+    display: none;
+}
+
+audio::-webkit-media-controls-time-remaining-display {
+    display: none;
+}
+
+audio::-webkit-media-controls-volume-control-container {
+    display: none;
+}
+
+audio::-webkit-internal-media-controls-overflow-button {
+    display: none;
+}
+
+/* Removes mute-button */
+audio::-webkit-media-controls-mute-button {
+    display: none;
+}
+
+/* Removes play-button */
+audio::-webkit-media-controls-play-button {
+    display: none;
+}

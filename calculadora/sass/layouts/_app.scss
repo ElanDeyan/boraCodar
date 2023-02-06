@@ -1,0 +1,15 @@
+#app {
+  display: grid;
+  place-items: center;
+
+  inline-size: 100vw;
+  @supports (inline-size: 100dvi) {
+    inline-size: 100dvi;
+  }
+  block-size: 100vh;
+  @supports (block-size: 100dvb) {
+    block-size: 100dvb;
+  }
+
+  background-color: var(--clr-app-background);
+}

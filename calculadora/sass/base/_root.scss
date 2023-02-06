@@ -1,0 +1,11 @@
+@use '../sass-utils/variables' as var;
+
+:root {
+  --clr-background: #{var.$clr-background};
+  --clr-app-background: #{var.$clr-app-background};
+  --clr-primary-calculator-bg: #{var.$clr-primary-calculator-bg};
+  --clr-neutral-dark-gray: #{var.$clr-neutral-dark-gray};
+  --clr-neutral-white: #{var.$clr-neutral-white};
+  --clr-neutral-dark-purple: #{var.$clr-neutral-dark-purple};
+  --clr-primary-purple: #{var.$clr-primary-purple};
+}

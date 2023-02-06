@@ -1,0 +1,208 @@
+:root {
+  --clr-background: hsl(0deg, 0%, 17%);
+  --clr-app-background: hsl(241deg, 45%, 65%);
+  --clr-primary-calculator-bg: hsl(254deg, 13%, 19%);
+  --clr-neutral-dark-gray: hsl(0deg, 0%, 42%);
+  --clr-neutral-white: hsl(0deg, 0%, 92%);
+  --clr-neutral-dark-purple: hsl(254deg, 13%, 19%);
+  --clr-primary-purple: hsl(262deg, 94%, 67%);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+picture,
+figure,
+svg {
+  display: block;
+  max-inline-size: 100%;
+}
+
+body {
+  overflow: hidden;
+  block-size: 100vh;
+  max-inline-size: 100vw;
+  font-family: "Rubik", system-ui, sans-serif;
+}
+@supports (block-size: 100dvb) {
+  body {
+    block-size: 100dvb;
+  }
+}
+@supports (max-inline-size: 100dvi) {
+  body {
+    max-inline-size: 100dvi;
+  }
+}
+
+button {
+  appearance: none;
+  outline-color: transparent;
+  border-color: transparent;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("Rubik-Regular.woff2") format("woff2"), url("Rubik-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  display: grid;
+  place-items: center;
+  grid-template-rows: 1fr max-content;
+  background-color: var(--clr-background);
+}
+
+#app {
+  display: grid;
+  place-items: center;
+  inline-size: 100vw;
+  block-size: 100vh;
+  background-color: var(--clr-app-background);
+}
+@supports (inline-size: 100dvi) {
+  #app {
+    inline-size: 100dvi;
+  }
+}
+@supports (block-size: 100dvb) {
+  #app {
+    block-size: 100dvb;
+  }
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.625rem;
+  padding-inline: 2rem;
+  padding-block: 3.375rem 2rem;
+  block-size: auto;
+  max-inline-size: 356px;
+  background-color: var(--clr-primary-calculator-bg);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 188px 52px rgba(0, 0, 0, 0.01), 0px 120px 48px rgba(0, 0, 0, 0.04), 0px 68px 41px rgba(0, 0, 0, 0.15), 0px 30px 30px rgba(0, 0, 0, 0.26), 0px 8px 17px rgba(0, 0, 0, 0.29), inset 0px 6px 8px rgba(255, 255, 255, 0.1), inset 0px -4px 5px rgba(0, 0, 0, 0.22);
+  border-radius: 3rem;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  inline-size: 100%;
+  padding-inline: 1.125rem 1.375rem;
+}
+.screen .operation {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--clr-neutral-dark-gray);
+  align-self: flex-end;
+}
+.screen .output {
+  display: flex;
+  align-items: center;
+}
+.screen .output .equals {
+  color: var(--clr-neutral-dark-gray);
+  font-size: 1.25rem;
+}
+.screen .output .result {
+  flex: 1;
+  text-align: end;
+  color: var(--clr-neutral-white);
+  font-size: 2.25rem;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.keyboard {
+  flex: 1;
+  display: grid;
+  grid-template-areas: "CE C percent divide" "seven eight nine times" "four five six minus" "one two three plus" "plus-minus zero comma equals";
+  gap: 0.75rem;
+  inline-size: 100%;
+}
+.keyboard button {
+  border-radius: 999px;
+  aspect-ratio: 1;
+  inline-size: 4rem;
+  box-shadow: 0px 11px 7px rgba(0, 0, 0, 0.01), 0px 7px 7px rgba(0, 0, 0, 0.04), 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.26), 0px 0px 2px rgba(0, 0, 0, 0.29), inset 0px 2px 3px rgba(255, 255, 255, 0.06);
+}
+.keyboard button[data-role=input], .keyboard button[data-value=plus-minus], .keyboard button[data-value=CE], .keyboard button[data-value=C], .keyboard button[data-value=percent] {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background-color: var(--clr-neutral-dark-purple);
+}
+.keyboard button[data-value=CE] {
+  color: var(--clr-primary-purple);
+}
+.keyboard button[data-value=CE] {
+  grid-area: CE;
+}
+.keyboard button[data-value=C] {
+  grid-area: C;
+}
+.keyboard button[data-value=percent] {
+  grid-area: percent;
+}
+.keyboard button[data-value=divide] {
+  grid-area: divide;
+}
+.keyboard button[data-value=seven] {
+  grid-area: seven;
+}
+.keyboard button[data-value=eight] {
+  grid-area: eight;
+}
+.keyboard button[data-value=nine] {
+  grid-area: nine;
+}
+.keyboard button[data-value=times] {
+  grid-area: times;
+}
+.keyboard button[data-value=four] {
+  grid-area: four;
+}
+.keyboard button[data-value=five] {
+  grid-area: five;
+}
+.keyboard button[data-value=six] {
+  grid-area: six;
+}
+.keyboard button[data-value=minus] {
+  grid-area: minus;
+}
+.keyboard button[data-value=one] {
+  grid-area: one;
+}
+.keyboard button[data-value=two] {
+  grid-area: two;
+}
+.keyboard button[data-value=three] {
+  grid-area: three;
+}
+.keyboard button[data-value=plus] {
+  grid-area: plus;
+}
+.keyboard button[data-value=plus-minus] {
+  grid-area: plus-minus;
+}
+.keyboard button[data-value=zero] {
+  grid-area: zero;
+}
+.keyboard button[data-value=comma] {
+  grid-area: comma;
+}
+.keyboard button[data-value=equals] {
+  grid-area: equals;
+}
+
+/*# sourceMappingURL=style.css.map */

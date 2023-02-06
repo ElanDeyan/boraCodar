@@ -1,0 +1,7 @@
+body {
+  display: grid;
+  place-items: center;
+  grid-template-rows: 1fr max-content;
+
+  background-color: var(--clr-background);
+}

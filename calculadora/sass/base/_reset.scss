@@ -1,0 +1,38 @@
+@use "../sass-utils/helpers";
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    // @extend %debug;
+}
+
+img,
+picture,
+figure,
+svg {
+    display: block;
+    max-inline-size: 100%;
+}
+
+body {
+    overflow: hidden;
+    block-size: 100vh;
+    @supports (block-size: 100dvb) {
+        block-size: 100dvb;
+    }
+    max-inline-size: 100vw;
+    @supports (max-inline-size: 100dvi) {
+        max-inline-size: 100dvi;
+    }
+
+    font-family: "Rubik", system-ui, sans-serif;
+}
+
+button {
+    appearance: none;
+    outline-color: transparent;
+    border-color: transparent;
+}

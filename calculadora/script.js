@@ -8,10 +8,21 @@ const operandMemory = new Array()
 const actualInput = new Array()
 
 const operations = {
-  CE: () => { },
-  C: () => { },
-  percent: (num) => { },
-  divide: (firstOp, secondOp) => { },
+  CE: () => {
+    output.innerText = ''
+    actualInput.length = 0
+  },
+  C: () => {
+    output.innerText = ''
+    actualInput.length = 0
+    actualOperation.innerText = ''
+  },
+  percent: (num) => {
+    return num / 100
+  },
+  divide: (firstOp, secondOp) => {
+    return firstOp / secondOp
+  },
   times: (firstOp, secondOp) => { },
   minus: (firstOp, secondOp) => { },
   plus: (firstOp, secondOp) => { },
@@ -39,8 +50,18 @@ for (const key in operationButtons) {
     element.addEventListener('click', e => {
       // console.log(e.target.getAttribute('data-value'))
       const operation = e.target.getAttribute('data-value')
-      
-      operations[operation]()
+      const numOfParameters = e.target.getAttribute('data-parameters')
+      let result;
+      switch (numOfParameters) {
+        case '0':
+          result = Number(operations[operation]())
+          break;
+        case '1':
+          result = Number(operations[operation](Number(output)))
+        default:
+          break;
+      }
+      output.innerText = Number(operations[operation](output.innerText))
     })
   }
 }
@@ -59,5 +80,9 @@ function writeInput(value) {
   if (value === ',') value = '.'
   if (value === ',' && actualInput.some(item => item === '.')) return
   actualInput.push(value)
-  return Number(actualInput.join(''))
+  return arrayToNumber(actualInput)
+}
+
+function arrayToNumber(arr) {
+  return Number(arr.join(''))
 }

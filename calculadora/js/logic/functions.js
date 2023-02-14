@@ -1,4 +1,4 @@
-'use strict;'
+'use strict'
 
 function writeInput(value, actualInput) {
   if (value === ',') value = '.'

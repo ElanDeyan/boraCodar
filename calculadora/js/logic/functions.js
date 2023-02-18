@@ -1,15 +1,27 @@
-'use strict;'
+//@ts-check
+"use strict";
 
+/**
+ * @param {string} value
+ * @param {any[]} actualInput
+ */
 function writeInput(value, actualInput) {
   if (value === ',') value = '.'
-  if (!(value === '.' && actualInput.some(item => item === '.'))) actualInput.push(value)
+  if (!(value === '.' && actualInput.some((/** @type {string} */ item) => item === '.'))) actualInput.push(value)
   return arrayToNumber(actualInput)
 }
 
+/**
+ * @param {any[]} arr
+ */
 function arrayToNumber(arr) {
   return Number(arr.join(''))
 }
 
+/**
+ * @param {any[]} memory
+ * @param {string | any[]} actualInput
+ */
 function saveInMemory(memory, actualInput) {
   for (const item of actualInput) {
     memory.push(item)
@@ -17,6 +29,10 @@ function saveInMemory(memory, actualInput) {
   actualInput.length = 0
 }
 
+/**
+ * @param {any} value
+ * @param {number[]} actualInput
+ */
 function updateActualInput(value, actualInput) {
   console.log(value, actualInput)
   const reservedStrings = ['.','-']
@@ -28,25 +44,25 @@ function updateActualInput(value, actualInput) {
 }
 
 const operations = {
-  "CE": (output, actualInput) => {
+  "CE": (/** @type {{ innerText: number; }} */ output, /** @type {string | any[]} */ actualInput) => {
     output.innerText = 0
     actualInput.length = 0
   },
-  "C": (output, actualInput, actualOperation, memory) => {
+  "C": (/** @type {{ innerText: number; }} */ output, /** @type {string | any[]} */ actualInput, /** @type {{ innerText: string; }} */ actualOperation, /** @type {string | any[]} */ memory) => {
     output.innerText = 0
     actualInput.length = 0
     actualOperation.innerText = ''
     memory.length = 0
   },
-  "percent": (num) => num / 100,
-  "divide": (firstOp, secondOp) => firstOp / secondOp,
-  "times": (firstOp, secondOp) => firstOp * secondOp,
-  "minus": (firstOp, secondOp) => firstOp - secondOp,
-  "plus": (firstOp, secondOp) => firstOp + secondOp,
+  "percent": (/** @type {number} */ num) => num / 100,
+  "divide": (/** @type {number} */ firstOp, /** @type {number} */ secondOp) => firstOp / secondOp,
+  "times": (/** @type {number} */ firstOp, /** @type {number} */ secondOp) => firstOp * secondOp,
+  "minus": (/** @type {number} */ firstOp, /** @type {number} */ secondOp) => firstOp - secondOp,
+  "plus": (/** @type {any} */ firstOp, /** @type {any} */ secondOp) => firstOp + secondOp,
   "equals": () => {
 
   },
-  "plus-minus": (num) => num * -1,
+  "plus-minus": (/** @type {number} */ num) => num * -1,
   
 }
 

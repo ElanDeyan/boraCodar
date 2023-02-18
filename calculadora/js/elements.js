@@ -1,3 +1,4 @@
+"use strict";
 const operationHistory = document.querySelector('.operation')
 const resultScreen = document.querySelector('.output .result')
 

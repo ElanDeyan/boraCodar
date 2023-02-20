@@ -26,7 +26,10 @@ for (const key in myCalculator.operationButtons) {
   if (Object.hasOwnProperty.call(myCalculator.operationButtons, key)) {
     const element = myCalculator.operationButtons[key];
     const operation = element.dataset.value
-    console.log(operation)
+    const numOfParameters = element.dataset.parameters
+    element.addEventListener('click', (/** @type {{ target: HTMLButtonElement; }} */ e) => {
+      myCalculator.calc(operation, numOfParameters)
+    })
   }
 }
 

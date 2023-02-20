@@ -1,4 +1,6 @@
+//@ts-check
 "use strict";
+
 const operationHistory = document.querySelector('.operation')
 const resultScreen = document.querySelector('.output .result')
 
@@ -7,7 +9,8 @@ const allButtons = document.querySelectorAll('.keyboard button')
 const buttonsObj = new Object()
 
 for (const button of allButtons) {
-  const buttonValue = button.getAttribute('data-value')
+  // @ts-ignore
+  const buttonValue = button.dataset.value
   buttonsObj[buttonValue] = button
 }
 

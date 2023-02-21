@@ -65,7 +65,13 @@ export class Calculator {
                 )
             )
         )
-            this.#actualInput.push(value);
+        console.log(this.#actualInput.includes(0, 0))
+            if (
+                this.#actualInput.includes(0, 0) &&
+                this.#actualInput.length === 1
+            )
+                this.#actualInput.length = 0;
+        this.#actualInput.push(value);
         // @ts-ignore
         this.resultScreen.textContent = `${this.#arrayToNumber(
             this.#actualInput,
@@ -117,8 +123,9 @@ export class Calculator {
                 this.operations[operation]();
                 break;
             case "1":
-                if (this.#actualInput.length === 0)
+                if (this.#actualInput.length === 0 && this.#memory.length !== 0)
                     this.#actualInput = [...this.#memory];
+                else if(this.#actualInput.length === 0 && this.#memory.length === 0) this.#actualInput = [0]
                 result = this.operations[operation](
                     this.#arrayToNumber(this.#actualInput),
                 );
@@ -145,13 +152,34 @@ export class Calculator {
                         console.log("Result: ", result);
                         // @ts-ignore
                         this.resultScreen.textContent = result;
+                        // @ts-ignore
+                        // this.operationHistory += `${this.#memory} ${this.#lastOperation} ${this.#actualInput}`
                         this.#updateActualInput(result);
                         this.#saveInMemory();
+                        // this.#updateActualInput(result)
                         console.log("Memory: ", this.#memory);
                         console.log("ActualInput", this.#actualInput);
                     } else {
+                        if (this.#lastOperation !== undefined) {
+                          this.#lastOperation = operation;
+                        console.log("Last Operation", this.#lastOperation);
+                            console.log(this.#lastOperation);
+                            // @ts-ignore
+                            let result = this.operations[this.#lastOperation](
+                                this.#arrayToNumber(this.#memory),
+                                this.#arrayToNumber(this.#actualInput),
+                            );
+                            console.log("Result: ", result);
+                            // @ts-ignore
+                            this.resultScreen.textContent = result;
+                            this.#updateActualInput(result);
+                            this.#saveInMemory();
+                            console.log("Memory: ", this.#memory);
+                            console.log("ActualInput", this.#actualInput);
+                        }
                         this.#lastOperation = operation;
                         console.log("Last Operation", this.#lastOperation);
+                        
                     }
                 }
                 break;
@@ -166,6 +194,7 @@ export class Calculator {
             // @ts-ignore
             this.resultScreen.textContent = 0;
             this.#actualInput.length = 0;
+            this.#actualInput.push(0);
         },
         C: () => {
             // @ts-ignore

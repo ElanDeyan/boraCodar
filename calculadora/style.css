@@ -131,7 +131,8 @@ body {
   gap: 0.75rem;
   inline-size: 100%;
 }
-.keyboard button {
+
+button {
   display: grid;
   place-items: center;
   font-size: 1.5rem;
@@ -141,79 +142,108 @@ body {
   color: var(--clr-neutral-white);
   box-shadow: 0px 11px 7px rgba(0, 0, 0, 0.01), 0px 7px 7px rgba(0, 0, 0, 0.04), 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.26), 0px 0px 2px rgba(0, 0, 0, 0.29), inset 0px 2px 3px rgba(255, 255, 255, 0.06);
 }
-.keyboard button[data-role=input], .keyboard button[data-value=plus-minus], .keyboard button[data-value=CE], .keyboard button[data-value=C], .keyboard button[data-value=percent] {
+button[data-role=input], button[data-value=plus-minus], button[data-value=CE], button[data-value=C], button[data-value=percent] {
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%);
   background-color: var(--clr-neutral-dark-purple);
 }
-.keyboard button[data-value=equals] {
+button[data-role=input]:is(:hover, :focus, :focus-within), button[data-value=plus-minus]:is(:hover, :focus, :focus-within), button[data-value=CE]:is(:hover, :focus, :focus-within), button[data-value=C]:is(:hover, :focus, :focus-within), button[data-value=percent]:is(:hover, :focus, :focus-within) {
+  background-color: #15141a;
+}
+button[data-value=equals] {
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   background-color: #7f45e2;
 }
-.keyboard button[data-value=plus], .keyboard button[data-value=minus], .keyboard button[data-value=times], .keyboard button[data-value=divide] {
+button[data-value=equals]:is(:hover, :focus, :focus-within) {
+  background-color: #6321d3;
+}
+button[data-value=plus], button[data-value=minus], button[data-value=times], button[data-value=divide] {
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0.01%, rgba(255, 255, 255, 0.05) 100%);
   background-color: #462878;
 }
-.keyboard button[data-value=CE] {
+button[data-value=plus]:is(:hover, :focus, :focus-within), button[data-value=minus]:is(:hover, :focus, :focus-within), button[data-value=times]:is(:hover, :focus, :focus-within), button[data-value=divide]:is(:hover, :focus, :focus-within) {
+  background-color: #301b52;
+}
+button[data-value=CE] {
   color: var(--clr-primary-purple);
 }
-.keyboard button[data-value=CE] {
+
+button[data-value=CE] {
   grid-area: CE;
 }
-.keyboard button[data-value=C] {
+
+button[data-value=C] {
   grid-area: C;
 }
-.keyboard button[data-value=percent] {
+
+button[data-value=percent] {
   grid-area: percent;
 }
-.keyboard button[data-value=divide] {
+
+button[data-value=divide] {
   grid-area: divide;
 }
-.keyboard button[data-value=seven] {
+
+button[data-value=seven] {
   grid-area: seven;
 }
-.keyboard button[data-value=eight] {
+
+button[data-value=eight] {
   grid-area: eight;
 }
-.keyboard button[data-value=nine] {
+
+button[data-value=nine] {
   grid-area: nine;
 }
-.keyboard button[data-value=times] {
+
+button[data-value=times] {
   grid-area: times;
 }
-.keyboard button[data-value=four] {
+
+button[data-value=four] {
   grid-area: four;
 }
-.keyboard button[data-value=five] {
+
+button[data-value=five] {
   grid-area: five;
 }
-.keyboard button[data-value=six] {
+
+button[data-value=six] {
   grid-area: six;
 }
-.keyboard button[data-value=minus] {
+
+button[data-value=minus] {
   grid-area: minus;
 }
-.keyboard button[data-value=one] {
+
+button[data-value=one] {
   grid-area: one;
 }
-.keyboard button[data-value=two] {
+
+button[data-value=two] {
   grid-area: two;
 }
-.keyboard button[data-value=three] {
+
+button[data-value=three] {
   grid-area: three;
 }
-.keyboard button[data-value=plus] {
+
+button[data-value=plus] {
   grid-area: plus;
 }
-.keyboard button[data-value=plus-minus] {
+
+button[data-value=plus-minus] {
   grid-area: plus-minus;
 }
-.keyboard button[data-value=zero] {
+
+button[data-value=zero] {
   grid-area: zero;
 }
-.keyboard button[data-value=comma] {
+
+button[data-value=comma] {
   grid-area: comma;
 }
-.keyboard button[data-value=equals] {
+
+button[data-value=equals] {
   grid-area: equals;
 }
 

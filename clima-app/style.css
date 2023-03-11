@@ -1,0 +1,62 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  block-size: 100vh;
+  overflow: hidden;
+}
+
+@supports (block-size: 100dvb) {
+  body {
+    block-size: 100dvb;
+  }
+}
+
+@supports (overflow-block: hidden) and (overflow-inline: hidden) {
+  body {
+    overflow-block: hidden;
+    overflow-inline: hidden;
+  }
+}
+
+#app {
+  position: relative;
+  isolation: isolate;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+img {
+  display: block;
+}
+
+.img-responsive {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+.background img {
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (orientation: portrait) {
+  .background img {
+    block-size: 100vh;
+  }
+
+  @supports (block-size: 100dvb) {
+    .background img {
+      block-size: 100dvb;
+    }
+  }
+}

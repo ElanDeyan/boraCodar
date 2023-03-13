@@ -8,7 +8,7 @@
 
 body {
   block-size: 100vh;
-  overflow: hidden;
+  overflow: hidden scroll;
 }
 
 @supports (block-size: 100dvb) {
@@ -17,9 +17,9 @@ body {
   }
 }
 
-@supports (overflow-block: hidden) and (overflow-inline: hidden) {
+@supports (overflow-block: scroll) and (overflow-inline: hidden) {
   body {
-    overflow-block: hidden;
+    overflow-block: scroll;
     overflow-inline: hidden;
   }
 }
@@ -27,6 +27,7 @@ body {
 #app {
   position: relative;
   isolation: isolate;
+  block-size: inherit;
 }
 
 .background {
@@ -59,4 +60,15 @@ img {
       block-size: 100dvb;
     }
   }
+}
+
+.sun-time-progress {
+  position: relative;
+  isolation: isolate;
+}
+
+.chart circle {
+  stroke-width: 5px;
+  stroke: yellow;
+  stroke-dasharray: 2.5 12;
 }

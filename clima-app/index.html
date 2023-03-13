@@ -189,8 +189,13 @@
                     <div class="sun-time-progress">
                         <svg class="chart" viewBox="0 0 250 100">
                           <g>
-                            <circle cx="100" cy="100" r="50%"></circle>
-                            <polyline points="0,0 0,100 15,100 15,0"></polyline>
+                            <defs>
+                                <radialGradient id="light" cx="50%" cy="50%" r="50%" fx="50%" fy="0%">
+                                    <stop offset="0%" stop-color="yellow" stop-opacity="1" />
+                                    <stop offset="100%" stop-color="yellow" stop-opacity="0" />
+                                </radialGradient>
+                            </defs>
+                            <circle cx="100" cy="100" r="50%" fill="url(#light)"></circle>
                           </g>
                         </svg>
                     </div>

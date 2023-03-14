@@ -62,13 +62,16 @@ img {
   }
 }
 
+
+
 .sun-time-progress {
+  overflow: visible;
   position: relative;
   isolation: isolate;
 }
 
 .chart circle {
   stroke-width: 5px;
-  stroke: yellow;
+  stroke: hsl(46,92%,58%);
   stroke-dasharray: 2.5 12;
 }

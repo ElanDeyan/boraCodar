@@ -191,12 +191,25 @@
                           <g>
                             <defs>
                                 <radialGradient id="light" cx="50%" cy="50%" r="50%" fx="50%" fy="0%">
-                                    <stop offset="0%" stop-color="yellow" stop-opacity="1" />
-                                    <stop offset="100%" stop-color="yellow" stop-opacity="0" />
+                                    <stop offset="0%" stop-color="hsla(46,92%,58%,0.75)" stop-opacity="1" />
+                                    <stop offset="100%" stop-color="hsla(46,92%,58%,0.75)" stop-opacity="0" />
                                 </radialGradient>
                             </defs>
-                            <circle cx="100" cy="100" r="50%" fill="url(#light)"></circle>
+                            <circle class="sun-radius" cx="100" cy="100" r="50%" fill="url(#light)"></circle>
+                            <text class="now" x="32.5%" y="62.5%"><tspan>16:01</tspan></text>
+                            <circle class="sun" cx="100" cy="5" r="2.5%" fill="hsl(46,92%,58%)"></circle>
+                            <g>
+                              <line x1="0" x2="200" y1="100%" y2="100%" stroke="hsl(46,92%,58%)"></line>
+                              <line x1="0" x2="0" y1="105%" y2="95%" stroke="hsl(46,92%,58%)"></line>
+                              <line x1="200" x2="200" y1="105%" y2="95%" stroke="hsl(46,92%,58%)"></line>
+
+                            </g>
                           </g>
+                          <g>
+                            <text class="sunrise" x="0" y="100%"><tspan>06:12</tspan></text>
+                            <text class="sunset" x="180" y="100%"><tspan>18:52</tspan></text>
+                          </g>
+
                         </svg>
                     </div>
                 </div>

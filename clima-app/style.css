@@ -65,6 +65,7 @@ img {
 
 
 .sun-time-progress {
+  inline-size: 250px;
   overflow: visible;
   position: relative;
   isolation: isolate;

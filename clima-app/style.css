@@ -5,7 +5,7 @@
   --s: 0;
   --l: 0;
   --a: 1;
-  --hsl: hsla(var(--h),var(--s),var(--l),var(--a));
+  --hsla: hsla(var(--h),var(--s),var(--l),var(--a));
 
   --gap: 1rem;
 
@@ -42,6 +42,8 @@ body {
   position: relative;
   isolation: isolate;
   block-size: inherit;
+  display: grid;
+  place-items: center;
 }
 
 .background {
@@ -101,9 +103,9 @@ img {
   --h: 243;
   --s: 53%;
   --l: 61%;
-  
+  --hsla: hsla(var(--h), var(--s), var(--l), var(--a));
   border-radius: var(--corner-radius);
-  background-color: var(--hsl);
+  background-color: var(--hsla);
 }
 
 [data-widget-type="temperature-now"] {

@@ -62,8 +62,6 @@ img {
   }
 }
 
-
-
 .sun-time-progress {
   inline-size: 250px;
   overflow: visible;
@@ -75,4 +73,32 @@ img {
   stroke-width: 5px;
   stroke: hsl(46,92%,58%);
   stroke-dasharray: 2.5 12;
+}
+
+.weather-dashboard {
+  display: grid;
+  grid-template-areas: 
+    "now now air sun-time"
+    "now now week week";
+  gap: 1rem;
+}
+
+[data-widget-type="temperature-now"] {
+  grid-area: now;
+}
+
+[data-widget-type="air-quality"] {
+  grid-area: air;
+}
+
+[data-widget-type="sun-time"] {
+  grid-area: sun-time;
+}
+
+[data-widget-type="week-weather"] {
+  grid-area: week;
+}
+
+.widget {
+  
 }

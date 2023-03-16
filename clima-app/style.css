@@ -9,7 +9,7 @@
 
   --gap: 1rem;
 
-  --internal-padding: 1rem;
+  --internal-padding: 1em;
 }
 
 *,
@@ -20,9 +20,13 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   block-size: 100vh;
-  overflow: hidden scroll;
+  overflow: hidden;
 }
 
 @supports (block-size: 100dvb) {
@@ -31,9 +35,9 @@ body {
   }
 }
 
-@supports (overflow-block: scroll) and (overflow-inline: hidden) {
+@supports (overflow-block: hidden) and (overflow-inline: hidden) {
   body {
-    overflow-block: scroll;
+    overflow-block: hidden;
     overflow-inline: hidden;
   }
 }
@@ -44,6 +48,10 @@ body {
   block-size: inherit;
   display: grid;
   place-items: center;
+
+  background-image: url("./assets/background-sunset.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .background {
@@ -97,6 +105,41 @@ img {
     "now now air sun-time"
     "now now week week";
   gap: var(--gap);
+  padding: var(--internal-padding);
+}
+
+@media (orientation: portrait) {
+  .weather-dashboard {
+    max-inline-size: min(500px, 90vi);
+    grid-template-areas: none;
+    grid-auto-flow: row;
+    grid-template-columns: minmax(150px, 1fr);
+    overflow-y: scroll;
+  }
+
+  @supports (overflow-block: scroll) {
+    .weather-dashboard {
+      overflow-block: scroll;
+    }
+  }
+
+  @supports (overflow-y: overlay) {
+    .weather-dashboard {
+      overflow-y: overlay;
+    }
+  }
+
+  @supports (overflow-block: overlay) {
+    .weather-dashboard {
+      overflow-block: overlay;
+    }
+  }
+
+  .weather-dashboard > [data-widget-type] {
+    grid-area: unset;
+  }
+
+  
 }
 
 .widget {

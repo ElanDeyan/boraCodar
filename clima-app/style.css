@@ -1,3 +1,26 @@
+/* Font Face and files downloaded in Google Fonts
+   and .woff .woff2 files generated in Transfonter.org
+*/
+@font-face {
+  font-family: 'Lato';
+  src: local('Lato Regular'), local('Lato-Regular'),
+      url('./assets/fonts/Transfonter/') format('woff2'),
+      url('./assets/fonts/Transfonter/Lato-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: local('Lato Bold'), local('Lato-Bold'),
+      url('./assets/fonts/Transfonter/Lato-Bold.woff2') format('woff2'),
+      url('./assets/fonts/Transfonter/Lato-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --corner-radius: 10px;
 
@@ -5,11 +28,16 @@
   --s: 0;
   --l: 0;
   --a: 1;
-  --hsla: hsla(var(--h),var(--s),var(--l),var(--a));
+  --hsla: hsla(var(--h), var(--s), var(--l), var(--a));
 
   --gap: 1rem;
 
   --internal-padding: 1em;
+
+  --text-color-light-purple: hsl(243, 71%, 85%);
+  --text-color-white: hsl(0, 50%, 100%);
+
+  --good-level-color: hsl(162, 71%, 73%);
 }
 
 *,
@@ -22,6 +50,8 @@
 
 html {
   scroll-behavior: smooth;
+  font-family: 'Lato', system-ui, sans-serif;
+  color: var(--text-color-light-purple);
 }
 
 body {
@@ -95,13 +125,13 @@ img {
 
 .chart circle {
   stroke-width: 5px;
-  stroke: hsl(46,92%,58%);
+  stroke: hsl(46, 92%, 58%);
   stroke-dasharray: 2.5 12;
 }
 
 .weather-dashboard {
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
     "now now air sun-time"
     "now now week week";
   gap: var(--gap);
@@ -135,11 +165,9 @@ img {
     }
   }
 
-  .weather-dashboard > [data-widget-type] {
+  .weather-dashboard>[data-widget-type] {
     grid-area: unset;
   }
-
-  
 }
 
 .widget {
@@ -160,14 +188,18 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  padding: calc(var(--internal-padding) * 0.75);
+
+  font-weight: bold;
 }
 
-[data-widget-type="temperature-now"] > .weather-now {
+[data-widget-type="temperature-now"]>.weather-now {
   position: absolute;
   inset: -56px auto auto -64px;
 }
 
-[data-widget-type="temperature-now"] > .location {
+[data-widget-type="temperature-now"]>.location {
   --gap: .25rem;
   --internal-padding: .75rem;
 
@@ -175,11 +207,12 @@ img {
   align-items: center;
   position: absolute;
   inset: 0 0 auto auto;
-  margin: 2rem 2rem 0 0;
   padding: var(--internal-padding);
+
+  font-size: .875rem;
 }
 
-[data-widget-type="temperature-now"] > .temperature {
+[data-widget-type="temperature-now"]>.temperature {
   --gap: .25rem;
 
   display: flex;
@@ -189,11 +222,32 @@ img {
   margin: auto 0;
 }
 
-[data-widget-type="temperature-now"] > .statistics {
+[data-widget-type="temperature-now"]>.temperature .average {
+  color: var(--text-color-white);
+  font-weight: bold;
+  font-size: 5.5rem;
+}
+
+[data-widget-type="temperature-now"]>.temperature .average sup {
+  font-size: 2rem;
+  vertical-align: top;
+  color: var(--text-color-light-purple);
+}
+
+[data-widget-type="temperature-now"]>.temperature .min-max {
+  font-size: 1.25rem;
+}
+
+[data-widget-type="temperature-now"]>.temperature .max {
+  color: var(--text-color-white);
+}
+
+[data-widget-type="temperature-now"]>.statistics {
   --gap: .5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--gap);
 }
 
 [data-widget-type="temperature-now"] .widget {
@@ -206,14 +260,31 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--gap);
   padding: calc(var(--internal-padding) * 0.75) var(--internal-padding);
 }
 
 [data-widget-type="temperature-now"] .widget .widget-data {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
+
+  font-weight: 400;
+  font-size: .75rem;
+}
+
+[data-widget-type="temperature-now"] .widget .widget-data .value {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--text-color-white);
+}
+
+[data-widget-type="temperature-now"] [data-widget-type] .value::after {
+  font-size: .875rem;
+  font-weight: 400;
+  color: var(--text-color-light-purple);
+  margin-inline-start: .25rem;
 }
 
 [data-widget-type="temperature-now"] [data-widget-type="wind"] .value::after {
@@ -229,28 +300,136 @@ img {
 }
 
 [data-widget-type="air-quality"] {
+  --internal-padding: 2em 1em 1em;
   grid-area: air;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+
+  padding: var(--internal-padding);
+}
+
+[data-widget-type="air-quality"] .statistic-type {
+  --gap: .5rem;
+
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+
+  font-weight: bold;
+}
+
+[data-widget-type="air-quality"] .quality {
+  --gap: .25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  font-weight: bold;
+}
+
+[data-widget-type="air-quality"] .quality .level {
+  font-size: 1.25rem;
+  color: var(--good-level-color);
+}
+
+[data-widget-type="air-quality"] .quality .value {
+  color: var(--text-color-white);
+  font-size: 2.5rem;
+}
+
+[data-widget-type="air-quality"] .air-elements {
+  --gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+[data-widget-type="air-quality"] .air-elements .element {
+  --gap: .125rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+}
+
+[data-widget-type="air-quality"] .air-elements .element .grade {
+  color: var(--good-level-color);
+  font-size: .875rem;
+  font-weight: bold;
+}
+
+[data-widget-type="air-quality"] .air-elements .element .molecule {
+  --text-color-light-purple: hsl(243, 72%, 94%);
+  color: var(--text-color-light-purple);
+  font-size: .75rem;
 }
 
 [data-widget-type="sun-time"] {
+  --internal-padding: 2em 1em 1em;
+  --gap: 2rem;
   grid-area: sun-time;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+
+  padding: var(--internal-padding);
+}
+
+[data-widget-type="sun-time"] .statistic-type {
+  --gap: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+
+  font-weight: bold;
 }
 
 [data-widget-type="week-weather"] {
+  --gap: .75rem;
+  --internal-padding: 2.5em;
   grid-area: week;
   display: flex;
   gap: var(--gap);
   justify-content: center;
   align-items: center;
+  padding: var(--internal-padding);
 }
 
-.weather {
-  --gap: calc(var(--gap) / 2);
+[data-widget-type="week-weather"] .weather {
+  --gap: 1rem;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--gap);
 }
 
+[data-widget-type="week-weather"] .weather .day {
+  --text-color-light-purple: hsl(244, 66%, 91%);
+  color: var(--text-color-light-purple);
+  font-size: .875rem;
+  font-weight: bold;
+}
 
+[data-widget-type="week-weather"] .weather .min-max {
+  font-size: 1rem;
+  font-weight: bold;
+}
 
+[data-widget-type="week-weather"] .weather .min-max :first-child {
+  margin-inline-end: 1ch;
+}
+
+[data-widget-type="week-weather"] .weather .max {
+  color: var(--text-color-white);
+}

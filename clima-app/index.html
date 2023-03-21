@@ -15,6 +15,7 @@
             media="(prefers-color-scheme: light)"
         />
         <link rel="stylesheet" href="./style.css" />
+        <script src="./script.js" defer></script>
         <title>Climapp</title>
     </head>
     <body>
@@ -34,13 +35,13 @@
                                 fill="#9D99E4"
                             />
                         </svg>
-                        <span>Rio do sul, SC</span>
+                        <span id="Location">Rio do sul, SC</span>
                     </div>
                     <div class="temperature">
-                        <span class="average">18<sup>&deg;C</sup></span>
+                        <span id="TempNow" class="now">18</span>
                         <div class="min-max">
-                            <span class="max">22&deg;</span>
-                            <span class="min">16&deg;</span>
+                            <span class="max">22</span>
+                            <span class="min">16</span>
                         </div>
                     </div>
                     <div class="statistics">
@@ -144,6 +145,7 @@
                         </div>
                     </div>
                     <img
+                        id="WeatherImage"
                         class="weather-now"
                         src="./assets/weather.svg"
                         alt="Cloudy"
@@ -171,30 +173,30 @@
                         <span class="level">Boa</span>
                         <span class="value">21</span>
                     </div>
-                    <div class="air-elements">
+                    <div id="AirPolluents" class="air-elements">
                         <div class="element">
                             <span class="grade">12.9</span
-                            ><span class="molecule">PM2.5</span>
+                            ><span class="polluent">PM2.5</span>
                         </div>
                         <div class="element">
                             <span class="grade">12.9</span
-                            ><span class="molecule">PM10</span>
+                            ><span class="polluent">PM10</span>
                         </div>
                         <div class="element">
                             <span class="grade">2.1</span
-                            ><span class="molecule">SO<sub>2</sub></span>
+                            ><span class="polluent">SO<sub>2</sub></span>
                         </div>
                         <div class="element">
                             <span class="grade">1.4</span
-                            ><span class="molecule">NO<sub>2</sub></span>
+                            ><span class="polluent">NO<sub>2</sub></span>
                         </div>
                         <div class="element">
                             <span class="grade">21.2</span
-                            ><span class="molecule">O<sub>3</sub></span>
+                            ><span class="polluent">O<sub>3</sub></span>
                         </div>
                         <div class="element">
                             <span class="grade">0.7</span
-                            ><span class="molecule">CO</span>
+                            ><span class="polluent">CO</span>
                         </div>
                     </div>
                 </div>
@@ -383,6 +385,7 @@
                     </div>
                 </div>
             </div>
+            <a href="https://www.weatherapi.com/" title="Free Weather API"><img src='//cdn.weatherapi.com/v4/images/weatherapi_logo.png' alt="Weather data by WeatherAPI.com" border="0"></a>
         </div>
     </body>
 </html>

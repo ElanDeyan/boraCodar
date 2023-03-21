@@ -196,7 +196,8 @@ img {
 
 [data-widget-type="temperature-now"]>.weather-now {
   position: absolute;
-  inset: -56px auto auto -64px;
+  inset: -50px auto auto -64px;
+  inline-size: 120px;
 }
 
 [data-widget-type="temperature-now"]>.location {
@@ -222,13 +223,14 @@ img {
   margin: auto 0;
 }
 
-[data-widget-type="temperature-now"]>.temperature .average {
+[data-widget-type="temperature-now"]>.temperature .now {
   color: var(--text-color-white);
   font-weight: bold;
   font-size: 5.5rem;
 }
 
-[data-widget-type="temperature-now"]>.temperature .average sup {
+[data-widget-type="temperature-now"]>.temperature .now::after {
+  content: "\00b0 C";
   font-size: 2rem;
   vertical-align: top;
   color: var(--text-color-light-purple);
@@ -236,6 +238,10 @@ img {
 
 [data-widget-type="temperature-now"]>.temperature .min-max {
   font-size: 1.25rem;
+}
+
+[data-widget-type="temperature-now"]>.temperature .min-max > *::after {
+  content: "\00b0";
 }
 
 [data-widget-type="temperature-now"]>.temperature .max {
@@ -365,7 +371,7 @@ img {
   font-weight: bold;
 }
 
-[data-widget-type="air-quality"] .air-elements .element .molecule {
+[data-widget-type="air-quality"] .air-elements .element .polluent {
   --text-color-light-purple: hsl(243, 72%, 94%);
   color: var(--text-color-light-purple);
   font-size: .75rem;

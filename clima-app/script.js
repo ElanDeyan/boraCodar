@@ -16,6 +16,9 @@ const rainWidget = document.querySelector('[data-widget-type="rain"] .value')
 const airElementsDiv = document.getElementById('AirPolluents')
 const AIR_POLLUENTS = ['co', 'no2', 'o3', 'pm2_5', 'pm10', 'so2']
 const airQualityValue = document.querySelector('.quality .value')
+const sunriseHour = document.querySelector('.sunrise tspan')
+const sunsetHour = document.querySelector('.sunset tspan')
+const actualHour = document.querySelector('.sun-time-progress .now tspan')
 
 /**
  * 
@@ -83,4 +86,11 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
 
     // @ts-ignore
     airQualityValue.textContent = airPolluentMean.toFixed(1)
+    // @ts-ignore
+    sunriseHour.textContent = data.forecast.forecastday[0].astro.sunrise
+    // @ts-ignore
+    sunsetHour.textContent = data.forecast.forecastday[0].astro.sunset
+    const now = new Date()
+    // @ts-ignore
+    actualHour.textContent = `${now.getHours()}:${now.getMinutes()}`
   })

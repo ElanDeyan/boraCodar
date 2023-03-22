@@ -99,7 +99,7 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
     sunriseDate.setMinutes(+sunriseHour?.textContent?.slice(3,5))
 
     const sunsetDate = new Date(data.forecast.forecastday[0].date)
-    sunsetDate.setHours(+sunsetHour?.textContent?.slice(0,2))
+    sunsetDate.setHours(+sunsetHour?.textContent?.slice(0,2) + 12)
     sunsetDate.setMinutes(+sunsetHour?.textContent?.slice(3,5))
 
     // https://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript

@@ -93,4 +93,17 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
     const now = new Date()
     // @ts-ignore
     actualHour.textContent = `${now.getHours()}:${now.getMinutes()}`
+
+    const sunriseDate = new Date(data.forecast.forecastday[0].date)
+    sunriseDate.setHours(+sunriseHour?.textContent?.slice(0,2))
+    sunriseDate.setMinutes(+sunriseHour?.textContent?.slice(3,5))
+
+    const sunsetDate = new Date(data.forecast.forecastday[0].date)
+    sunsetDate.setHours(+sunsetHour?.textContent?.slice(0,2))
+    sunsetDate.setMinutes(+sunsetHour?.textContent?.slice(3,5))
+
+    // https://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript
+    // https://stackoverflow.com/questions/19225414/how-to-get-the-hours-difference-between-two-date-objects#:~:text=var%20hours%20%3D%20Math.,the%20two%20dates%20in%20milliseconds.
+    const diffSunsetSunriseMinutes = Math.abs(sunsetDate - sunriseDate) / 6e4
+    console.log(diffSunsetSunriseMinutes)
   })

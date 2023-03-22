@@ -1,6 +1,8 @@
 //@ts-check
 "use strict";
 
+import convertTime12to24 from './js/vendor.js'
+
 const tempNow = document.getElementById('TempNow')
 const userLocation = document.getElementById('Location')
 /**
@@ -19,6 +21,7 @@ const airQualityValue = document.querySelector('.quality .value')
 const sunriseHour = document.querySelector('.sunrise tspan')
 const sunsetHour = document.querySelector('.sunset tspan')
 const actualHour = document.querySelector('.sun-time-progress .now tspan')
+const semiCircleSunTime = document.querySelector('.sun-time-progress .sun-radius')
 
 /**
  * 
@@ -87,9 +90,9 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
     // @ts-ignore
     airQualityValue.textContent = airPolluentMean.toFixed(1)
     // @ts-ignore
-    sunriseHour.textContent = data.forecast.forecastday[0].astro.sunrise
+    sunriseHour.textContent = convertTime12to24(data.forecast.forecastday[0].astro.sunrise)
     // @ts-ignore
-    sunsetHour.textContent = data.forecast.forecastday[0].astro.sunset
+    sunsetHour.textContent = convertTime12to24(data.forecast.forecastday[0].astro.sunset)
     const now = new Date()
     // @ts-ignore
     actualHour.textContent = `${now.getHours()}:${now.getMinutes()}`
@@ -99,11 +102,17 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
     sunriseDate.setMinutes(+sunriseHour?.textContent?.slice(3,5))
 
     const sunsetDate = new Date(data.forecast.forecastday[0].date)
-    sunsetDate.setHours(+sunsetHour?.textContent?.slice(0,2) + 12)
+    sunsetDate.setHours(+sunsetHour?.textContent?.slice(0,2)) 
     sunsetDate.setMinutes(+sunsetHour?.textContent?.slice(3,5))
 
     // https://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript
     // https://stackoverflow.com/questions/19225414/how-to-get-the-hours-difference-between-two-date-objects#:~:text=var%20hours%20%3D%20Math.,the%20two%20dates%20in%20milliseconds.
     const diffSunsetSunriseMinutes = Math.abs(sunsetDate - sunriseDate) / 6e4
     console.log(diffSunsetSunriseMinutes)
+
+    const sunTimeRadius = semiCircleSunTime.getBBox().width / 2
+    const sunTimeSemiCircunferencePX = (2 * Math.PI * sunTimeRadius) / 2
+
+
+
   })

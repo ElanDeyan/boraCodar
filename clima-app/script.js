@@ -1,6 +1,9 @@
 //@ts-check
 "use strict";
-
+// https://lexique.netmath.ca/en/half-circle-function/#:~:text=Function%20defined%20by%20a%20relation,centered%20on%20the%20origin%20point.
+/*
+√(4^2−(𝑥−4)^2 )
+*/
 import convertTime12to24 from './js/vendor.js'
 
 const airQualityColors = new Map([

@@ -106,11 +106,23 @@ function createLittleTemperatureWidget(dayWeek, imgSrc, imgAlt, max, min) {
   ])
   const weatherDiv = document.createElement('div')
   weatherDiv.classList.add('weather')
-  weatherDiv.dataset.day = dayMap.get(dayWeek)
+  weatherDiv.dataset.day = dayMap.get(dayWeek)?.toLowerCase()
 
   const weekDaySpan = document.createElement('span')
   weekDaySpan.classList.add('day')
-  weekDaySpan.textContent = dayMap.get(dayWeek) - 1 === (new Date().getDay()) ? "Tomorrow" : dayMap.get(dayWeek)
+  
+  const today = new Date().getDay()
+  
+  switch(dayWeek) {
+    case today:
+      weekDaySpan.textContent = "Today"
+      break
+    case today + 1:
+      weekDaySpan.textContent = "Tomorrow"
+      break
+    default:
+      weekDaySpan.textContent = dayMap.get(dayWeek)
+  }
 
   weatherDiv.appendChild(weekDaySpan)
 

@@ -432,6 +432,10 @@ img {
   font-weight: bold;
 }
 
+[data-widget-type="week-weather"] .weather .min-max > *::after {
+  content: '\00b0';
+}
+
 [data-widget-type="week-weather"] .weather .min-max :first-child {
   margin-inline-end: 1ch;
 }

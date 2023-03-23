@@ -83,33 +83,57 @@ function createPolluentNode(grade, polluent) {
 
 /**
  * 
- * @param {string} dayWeek 
+ * @param {number} dayWeek 
  * @param {string} imgSrc 
  * @param {number} max 
  * @param {number} min 
  */
-function createLittleTemperatureWidget(dayWeek, imgSrc, max, min) {
+function createLittleTemperatureWidget(dayWeek, imgSrc, imgAlt, max, min) {
+  const dayMap = new Map([
+    [0,"Sunday"],
+    [1,"Monday"],
+    [2,"Tuesday"],
+    [3,"Wednesday"],
+    [4,"Thursday"],
+    [5,"Friday"],
+    [6,"Saturday"]
+  ])
   const weatherDiv = document.createElement('div')
   weatherDiv.classList.add('weather')
-  weatherDiv.dataset.day = dayWeek
+  weatherDiv.dataset.day = dayMap.get(dayWeek)
 
   const weekDaySpan = document.createElement('span')
   weekDaySpan.classList.add('day')
+  weekDaySpan.textContent = dayMap.get(dayWeek) - 1 === (new Date().getDay()) ? "Tomorrow" : dayMap.get(dayWeek)
+
+  weatherDiv.appendChild(weekDaySpan)
 
   const img = document.createElement('img')
   img.src = imgSrc
   img.decoding = 'async'
   img.classList.add('weather-icon')
+  img.alt = imgAlt
+
+  weatherDiv.appendChild(img)
 
   const minMaxDiv = document.createElement('div')
   minMaxDiv.classList.add('min-max')
 
-  const minSpan = document.createElement('span')
-  minSpan.classList.add('min')
+  weatherDiv.appendChild(minMaxDiv)
 
   const maxSpan = document.createElement('span')
   maxSpan.classList.add('max')
+  maxSpan.textContent = max
 
+  minMaxDiv.appendChild(maxSpan)
+
+  const minSpan = document.createElement('span')
+  minSpan.classList.add('min')
+  minSpan.textContent = min
+
+  minMaxDiv.appendChild(minSpan)
+
+  return weatherDiv
 }
 
 fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944232003&q=Salvador&days=3&aqi=yes&alerts=yes')
@@ -190,4 +214,21 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
     airLevelText.textContent = airLevel
     // @ts-ignore
     document.documentElement.style.setProperty('--air-level-color', airColor)
+
+    for (const day in data.forecast.forecastday) {
+      if (Object.hasOwnProperty.call(data.forecast.forecastday, day)) {
+        if(day === 0) continue
+        const dayData = data.forecast.forecastday[day]
+
+        const dayWeek = new Date(`${dayData.date}T00:00`)
+
+        const weatherIconSrc = dayData.day.condition.icon
+        const weatherIconAlt = dayData.day.condition.text
+
+        const dayMax = dayData.day.maxtemp_c
+        const dayMin = dayData.day.mintemp_c
+
+        createLittleTemperatureWidget(dayWeek, weatherIconSrc, weatherIconAlt, dayMax, dayMin)
+      }
+    }
   })

@@ -32,6 +32,8 @@ const airQualityColors = new Map([
 
 const airLevelText = document.querySelector('[data-widget-type="air-quality"] .level')
 
+const weekWeatherWidget = document.querySelector('[data-widget-type="week-weather"]')
+
 const tempNow = document.getElementById('TempNow')
 const userLocation = document.getElementById('Location')
 /**
@@ -228,7 +230,7 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
         const dayMax = dayData.day.maxtemp_c
         const dayMin = dayData.day.mintemp_c
 
-        createLittleTemperatureWidget(dayWeek, weatherIconSrc, weatherIconAlt, dayMax, dayMin)
+        weekWeatherWidget?.appendChild(createLittleTemperatureWidget(dayWeek, weatherIconSrc, weatherIconAlt, dayMax, dayMin))
       }
     }
   })

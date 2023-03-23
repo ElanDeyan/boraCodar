@@ -3,6 +3,35 @@
 
 import convertTime12to24 from './js/vendor.js'
 
+const airQualityColors = new Map([
+  [1,{
+    value: "Good",
+    color: 'hsl(162, 71%, 73%)'
+  }],
+  [2,{
+    value: "Moderate",
+    color: 'hsl(62, 71%, 73%)'
+  }],
+  [3,{
+    value: "Unhealthy for Sensitive Groups",
+    color: 'hsl(36, 71%, 73%)'
+  }],
+  [4,{
+    value: "Unhealthy",
+    color: 'hsl(0, 71%, 73%)'
+  }],
+  [5,{
+    value: "Very Unhealthy",
+    color: "hsl(250, 35%, 73%)"
+  }],
+  [6,{
+    value: "Hazardous",
+    color: "hsl(0, 61%, 61%)"
+  }]
+])
+
+const airLevelText = document.querySelector('[data-widget-type="air-quality"] .level')
+
 const tempNow = document.getElementById('TempNow')
 const userLocation = document.getElementById('Location')
 /**
@@ -21,6 +50,10 @@ const airQualityValue = document.querySelector('.quality .value')
 const sunriseHour = document.querySelector('.sunrise tspan')
 const sunsetHour = document.querySelector('.sunset tspan')
 const actualHour = document.querySelector('.sun-time-progress .now tspan')
+/**
+ * @type {SVGCircleElement}
+ */
+// @ts-ignore
 const semiCircleSunTime = document.querySelector('.sun-time-progress .sun-radius')
 
 /**
@@ -48,7 +81,38 @@ function createPolluentNode(grade, polluent) {
   return div
 }
 
-fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944232003&q=Salvador&days=1&aqi=yes&alerts=yes')
+/**
+ * 
+ * @param {string} dayWeek 
+ * @param {string} imgSrc 
+ * @param {number} max 
+ * @param {number} min 
+ */
+function createLittleTemperatureWidget(dayWeek, imgSrc, max, min) {
+  const weatherDiv = document.createElement('div')
+  weatherDiv.classList.add('weather')
+  weatherDiv.dataset.day = dayWeek
+
+  const weekDaySpan = document.createElement('span')
+  weekDaySpan.classList.add('day')
+
+  const img = document.createElement('img')
+  img.src = imgSrc
+  img.decoding = 'async'
+  img.classList.add('weather-icon')
+
+  const minMaxDiv = document.createElement('div')
+  minMaxDiv.classList.add('min-max')
+
+  const minSpan = document.createElement('span')
+  minSpan.classList.add('min')
+
+  const maxSpan = document.createElement('span')
+  maxSpan.classList.add('max')
+
+}
+
+fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944232003&q=Salvador&days=3&aqi=yes&alerts=yes')
   .then(res => res.json())
   .catch(err => console.error(err))
   .then(data => {
@@ -98,21 +162,32 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
     actualHour.textContent = `${now.getHours()}:${now.getMinutes()}`
 
     const sunriseDate = new Date(data.forecast.forecastday[0].date)
+    // @ts-ignore
     sunriseDate.setHours(+sunriseHour?.textContent?.slice(0,2))
+    // @ts-ignore
     sunriseDate.setMinutes(+sunriseHour?.textContent?.slice(3,5))
 
     const sunsetDate = new Date(data.forecast.forecastday[0].date)
+    // @ts-ignore
     sunsetDate.setHours(+sunsetHour?.textContent?.slice(0,2)) 
+    // @ts-ignore
     sunsetDate.setMinutes(+sunsetHour?.textContent?.slice(3,5))
 
     // https://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript
     // https://stackoverflow.com/questions/19225414/how-to-get-the-hours-difference-between-two-date-objects#:~:text=var%20hours%20%3D%20Math.,the%20two%20dates%20in%20milliseconds.
+    // @ts-ignore
     const diffSunsetSunriseMinutes = Math.abs(sunsetDate - sunriseDate) / 6e4
     console.log(diffSunsetSunriseMinutes)
 
+    // @ts-ignore
     const sunTimeRadius = semiCircleSunTime.getBBox().width / 2
     const sunTimeSemiCircunferencePX = (2 * Math.PI * sunTimeRadius) / 2
 
+    const airLevel = airQualityColors.get(data.current.air_quality["us-epa-index"])?.value
+    const airColor = airQualityColors.get(data.current.air_quality["us-epa-index"])?.color
 
-
+    // @ts-ignore
+    airLevelText.textContent = airLevel
+    // @ts-ignore
+    document.documentElement.style.setProperty('--air-level-color', airColor)
   })

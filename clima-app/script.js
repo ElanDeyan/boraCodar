@@ -222,7 +222,7 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
         if(day === 0) continue
         const dayData = data.forecast.forecastday[day]
 
-        const dayWeek = new Date(`${dayData.date}T00:00`)
+        const dayWeek = new Date(`${dayData.date}T00:00`).getDay()
 
         const weatherIconSrc = dayData.day.condition.icon
         const weatherIconAlt = dayData.day.condition.text

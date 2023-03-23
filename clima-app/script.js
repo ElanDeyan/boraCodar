@@ -1,6 +1,7 @@
 //@ts-check
 "use strict";
 // https://lexique.netmath.ca/en/half-circle-function/#:~:text=Function%20defined%20by%20a%20relation,centered%20on%20the%20origin%20point.
+https://study.com/academy/lesson/horizontal-vertical-shifts-of-linear-functions.html#:~:text=A%20horizontal%20shift%20is%20a%20movement%20of%20a%20graph%20along,f(x%20%2D%20a).
 /*
 √(4^2−(𝑥−4)^2 )
 */

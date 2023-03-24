@@ -34,6 +34,11 @@ const airQualityColors = new Map([
   }]
 ])
 
+/**
+ * @type {SVGCircleElement}
+ */
+const sunElement = document.querySelector('.sun-time-progress .chart .sun')
+
 const airLevelText = document.querySelector('[data-widget-type="air-quality"] .level')
 
 const weekWeatherWidget = document.querySelector('[data-widget-type="week-weather"]')
@@ -203,6 +208,7 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
     // @ts-ignore
     actualHour.textContent = `${now.getHours()}:${now.getMinutes()}`
 
+
     const sunriseDate = new Date(data.forecast.forecastday[0].date)
     // @ts-ignore
     sunriseDate.setHours(+sunriseHour?.textContent?.slice(0,2))
@@ -219,11 +225,16 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
     // https://stackoverflow.com/questions/19225414/how-to-get-the-hours-difference-between-two-date-objects#:~:text=var%20hours%20%3D%20Math.,the%20two%20dates%20in%20milliseconds.
     // @ts-ignore
     const diffSunsetSunriseMinutes = Math.abs(sunsetDate - sunriseDate) / 6e4
+    const angleRatio = 180 / diffSunsetSunriseMinutes
     console.log(diffSunsetSunriseMinutes)
 
     // @ts-ignore
     const sunTimeRadius = semiCircleSunTime.getBBox().width / 2
-    const sunTimeSemiCircunferencePX = (2 * Math.PI * sunTimeRadius) / 2
+    sunElement.style.setProperty('--radius', `${sunTimeRadius}px`)
+
+    const differenceBetweenNowSunriseMinutes = Math.abs(now - sunriseDate) / 6e4
+
+    sunElement.style.setProperty('--angle', `${differenceBetweenNowSunriseMinutes * angleRatio}deg`)
 
     const airLevel = airQualityColors.get(data.current.air_quality["us-epa-index"])?.value
     const airColor = airQualityColors.get(data.current.air_quality["us-epa-index"])?.color

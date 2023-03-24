@@ -400,6 +400,13 @@ img {
   font-weight: bold;
 }
 
+.sun-time-progress .chart .sun {
+  --angle: -180deg;
+  --radius: 95px;
+  transform: translate(calc(cos(var(--angle)) * var(--radius)), calc(sin(var(--angle)) * var(--radius)));
+  stroke: none;
+}
+
 [data-widget-type="week-weather"] {
   --gap: .75rem;
   --internal-padding: 2.5em;

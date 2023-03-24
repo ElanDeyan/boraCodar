@@ -234,7 +234,7 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
 
     const differenceBetweenNowSunriseMinutes = Math.abs(now - sunriseDate) / 6e4
 
-    sunElement.style.setProperty('--angle', `${differenceBetweenNowSunriseMinutes * angleRatio}deg`)
+    sunElement.style.setProperty('--angle', `${-180 + (differenceBetweenNowSunriseMinutes * angleRatio)}deg`)
 
     const airLevel = airQualityColors.get(data.current.air_quality["us-epa-index"])?.value
     const airColor = airQualityColors.get(data.current.air_quality["us-epa-index"])?.color

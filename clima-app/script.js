@@ -206,7 +206,7 @@ fetch('https://api.weatherapi.com/v1/forecast.json?key=dac8507bbe2a4114bd9153944
     sunsetHour.textContent = convertTime12to24(data.forecast.forecastday[0].astro.sunset)
     const now = new Date()
     // @ts-ignore
-    actualHour.textContent = `${now.getHours()}:${now.getMinutes()}`
+    actualHour.textContent = `${now.getHours()}:${now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes()}`
 
 
     const sunriseDate = new Date(data.forecast.forecastday[0].date)
